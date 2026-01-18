@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sinar Pagi POS</title>
+    
+    <link rel="stylesheet" href="lib/remixicon.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script src="lib/vue.global.prod.js"></script>
+    <script src="lib/vue-router.global.js"></script>
+    <script src="lib/dexie.min.js"></script>
+    <script src="lib/unocss.js"></script>
+    
+    <style>
+        [v-cloak] { display: none; }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; margin: 0; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="app" v-cloak class="min-h-screen flex flex-col">
+        
+        <header class="bg-blue-600 text-white p-4 shadow-md flex items-center sticky top-0 z-30">
+            <button @click="sidebarOpen = true" class="bg-transparent border-none text-white text-2xl mr-4 flex items-center justify-center p-0">
+                <i class="ri-menu-2-fill"></i>
+            </button>
+            <h1 class="text-lg m-0 font-bold tracking-tight">SINAR PAGI</h1>
+            <div class="ml-auto flex gap-4">
+                <i class="ri-search-line text-xl opacity-80"></i>
+                <i class="ri-notification-3-line text-xl opacity-80"></i>
+            </div>
+        </header>
+
+        <sidebar-component :is-open="sidebarOpen" @close="sidebarOpen = false"></sidebar-component>
+
+        <main class="flex-1 container mx-auto overflow-x-hidden">
+            <router-view v-slot="{ Component }">
+                <transition name="fade" mode="out-in">
+                    <component :is="Component" />
+                </transition>
+            </router-view>
+        </main>
+
+    </div>
+
+    <script type="module">
+        import Sidebar, { MenuItem } from './components/common/Sidebar.js';
+
+        const { createApp } = Vue;
+
+        const app = createApp({
+            components: {
+                'sidebar-component': Sidebar,
+                'menu-item': MenuItem
+            },
+            data() {
+                return {
+                    sidebarOpen: false
+                }
+            }
+        });
+
+        // Import Router & Mount
+        import router from './js/routes.js';
+        app.use(router);
+        app.mount('#app');
+    </script>
+</body>
+</html>

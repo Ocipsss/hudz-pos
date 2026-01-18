@@ -1,0 +1,69 @@
+./
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   └── img/
+│       ├── icon-192.png
+│       └── icon-512.png
+├── components/
+│   ├── Dashboard.js
+│   ├── common/
+│   │   ├── GlobalSearch.js
+│   │   ├── Modal.js
+│   │   ├── Placeholder.js
+│   │   └── Sidebar.js
+│   └── modules/
+│       ├── finance/
+│       │   ├── AnalisaProduk.js
+│       │   ├── ArusUang.js
+│       │   ├── LaporanHarian.js
+│       │   ├── LaporanLabaRugi.js
+│       │   ├── Pengeluaran.js
+│       │   └── PiutangPenjualan.js
+│       ├── inventory/
+│       │   ├── DaftarProduk.js
+│       │   ├── StockMonitor.js
+│       │   └── TambahProduk.js
+│       ├── sales/
+│       │   ├── DataJasa.js
+│       │   ├── DigitalSvc.js
+│       │   ├── Kasir.js
+│       │   ├── StrukNota.js
+│       │   └── Transaksi.js
+│       └── settings/
+│           ├── DataMember.js
+│           ├── ManajemenUser.js
+│           ├── Perangkat.js
+│           └── ProfilToko.js
+├── core/
+│   ├── database.js
+│   ├── firebase-config.js
+│   └── sync-engine.js
+├── index.html
+├── js/
+│   ├── app.js
+│   ├── routes.js
+│   └── utils.js
+├── lib/
+│   ├── chart.js
+│   ├── dayjs.min.js
+│   ├── dexie.min.js
+│   ├── esc-pos-encoder.js
+│   ├── html5-qrcode.min.js
+│   ├── localforage.min.js
+│   ├── lodash.min.js
+│   ├── nanoid.js
+│   ├── pico.min.css
+│   ├── remixicon.css
+│   ├── remixicon.woff2
+│   ├── sweetalert2.all.min.js
+│   ├── unocss.js
+│   ├── vue-router.global.js
+│   ├── vue.global.prod.js
+│   └── workbox-sw.js
+├── manifest.json
+├── skema.txt
+├── struktur.txt
+└── sw.js
+
+14 directories, 53 files
