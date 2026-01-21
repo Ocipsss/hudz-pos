@@ -1,46 +1,33 @@
-// Dashboard.js - Full Version
 import Sidebar from './common/Sidebar.js';
 
 export default {
-    components: {
-        Sidebar
-    },
+    components: { Sidebar },
     data() {
-        return {
-            isSidebarOpen: false
-        }
+        return { isSidebarOpen: false }
+    },
+    computed: {
+        isKasirPage() { return this.$route.path === '/sales/kasir'; }
     },
     template: `
-    <div class="layout-wrapper" style="position: relative; overflow: hidden; min-height: 100vh;">
+    <div class="layout-wrapper">
         <Sidebar @close-menu="isSidebarOpen = false" />
         
-        <main 
-            class="main-content" 
-            :class="{ 'pushed': isSidebarOpen }"
-            @click="closeIfOpen"
-        >
+        <main class="main-content" :class="{ 'pushed': isSidebarOpen }" @click="closeIfOpen">
             <div v-if="isSidebarOpen" class="pushed-overlay"></div>
 
             <header class="header-wrapper">
-                <button 
-                    @click.stop="isSidebarOpen = !isSidebarOpen"
-                    style="
-                        width: 45px; 
-                        height: 45px; 
-                        border-radius: 12px; 
-                        border: 1px solid #eee; 
-                        background: white; 
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        cursor: pointer;
-                        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-                        transition: 0.2s;
-                    "
-                >
-                    <i :class="isSidebarOpen ? 'ri-close-line' : 'ri-menu-2-fill'" 
-                       style="font-size: 1.4rem; color: #333;"></i>
+                <button @click.stop="isSidebarOpen = !isSidebarOpen" class="btn-header">
+                    <i :class="isSidebarOpen ? 'ri-close-line' : 'ri-menu-2-fill'"></i>
                 </button>
+
+                <div v-if="!isSidebarOpen">
+                    <button v-if="isKasirPage" @click.stop="pilihMember" class="btn-header">
+                        <i class="ri-user-add-line" style="color: var(--primary-yellow);"></i>
+                    </button>
+                    <router-link v-else to="/sales/kasir" class="btn-header">
+                        <i class="ri-shopping-cart-2-line" style="color: var(--primary-yellow);"></i>
+                    </router-link>
+                </div>
             </header>
             
             <section class="content-body">
@@ -50,11 +37,7 @@ export default {
     </div>
     `,
     methods: {
-        closeIfOpen() {
-            // Jika user klik area konten saat menu terbuka, maka tutup
-            if (this.isSidebarOpen) {
-                this.isSidebarOpen = false;
-            }
-        }
+        closeIfOpen() { if (this.isSidebarOpen) this.isSidebarOpen = false; },
+        pilihMember() { alert('Pilih Member'); }
     }
 }

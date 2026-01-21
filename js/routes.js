@@ -4,9 +4,13 @@ import DashboardLayout from '../components/Dashboard.js';
 const routes = [
     {
         path: '/',
-        component: DashboardLayout,
-        children: [
-            { path: '', name: 'Dashboard', component: Placeholder },
+    component: DashboardLayout,
+    children: [
+        { 
+            path: '', // Ini akan membuat '/' hanya aktif secara exact
+            name: 'Dashboard', 
+            component: Placeholder 
+        },
             
             // Sales
             { path: 'sales/kasir', name: 'Kasir', component: Placeholder },
