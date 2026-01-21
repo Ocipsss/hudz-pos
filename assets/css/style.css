@@ -1,14 +1,16 @@
+/* style.css - Full Version */
 :root {
     --primary-yellow: #f1b44c;
     --bg-sidebar: #f8f9fa;
     --text-muted: #7f8c8d;
+    --transition-speed: 0.5s;
 }
 
 body {
     background-color: var(--bg-sidebar);
     margin: 0;
     overflow-x: hidden;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, sans-serif;
 }
 
 /* SIDEBAR (Lapisan Dasar) */
@@ -29,7 +31,9 @@ body {
     margin-bottom: 2.5rem;
 }
 
-#sidebar ul { list-style: none; padding: 0; }
+#sidebar ul { list-style: none; padding: 0; margin: 0; }
+#sidebar li { margin-bottom: 5px; }
+
 #sidebar li a {
     display: flex;
     align-items: center;
@@ -39,6 +43,7 @@ body {
     text-decoration: none;
     font-weight: 500;
     border-radius: 12px;
+    transition: 0.3s;
 }
 
 #sidebar li a.router-link-active {
@@ -53,19 +58,18 @@ body {
     z-index: 10;
     background: white;
     min-height: 100vh;
-    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: all var(--transition-speed) cubic-bezier(0.2, 0.8, 0.2, 1);
     box-shadow: -10px 0 30px rgba(0,0,0,0.05);
-    padding: 2rem;
+    padding: 0; /* Penting agar header bisa ke pojok */
+    overflow: hidden;
 }
 
 /* STATE SAAT MENU TERBUKA */
 .main-content.pushed {
-    /* Geser ke kanan (translateX) dan mengecil (scale) */
-    transform: translateX(260px) scale(0.85) rotateY(-5deg); /* Sedikit rotasi Y jika ingin efek 3D */
+    transform: translateX(240px) scale(0.85);
     border-radius: 40px;
     cursor: pointer;
     user-select: none;
-    perspective: 1000px;
 }
 
 /* Block interaksi konten saat menu terbuka */
@@ -74,8 +78,19 @@ body {
 }
 
 /* Kecualikan tombol burger agar tetap bisa diklik untuk menutup */
-.main-content.pushed header button {
+.main-content.pushed .header-wrapper button {
     pointer-events: auto;
+}
+
+/* Header & Content Area */
+.header-wrapper {
+    padding: 1rem; /* Jarak tombol dari pojok kiri atas */
+    display: flex;
+    align-items: center;
+}
+
+.content-body {
+    padding: 0 1.5rem 2rem 1.5rem;
 }
 
 .pushed-overlay {
@@ -83,3 +98,7 @@ body {
     top: 0; left: 0; right: 0; bottom: 0;
     z-index: 20;
 }
+
+/* Utility classes untuk Placeholder */
+.text-center { text-align: center; }
+.mt-10 { margin-top: 2.5rem; }
