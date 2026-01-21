@@ -1,1 +1,0 @@
-Redirecting to /esc-pos-encoder@3.0.0/dist/esc-pos-encoder.js
