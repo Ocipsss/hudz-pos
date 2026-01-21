@@ -1,0 +1,85 @@
+:root {
+    --primary-yellow: #f1b44c;
+    --bg-sidebar: #f8f9fa;
+    --text-muted: #7f8c8d;
+}
+
+body {
+    background-color: var(--bg-sidebar);
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+}
+
+/* SIDEBAR (Lapisan Dasar) */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    padding: 2.5rem 1.5rem;
+    z-index: 1;
+}
+
+#sidebar .brand {
+    color: var(--primary-yellow);
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 2.5rem;
+}
+
+#sidebar ul { list-style: none; padding: 0; }
+#sidebar li a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0.8rem 1.2rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 12px;
+}
+
+#sidebar li a.router-link-active {
+    background-color: white;
+    color: var(--primary-yellow);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+/* MAIN CONTENT (Lapisan Atas) */
+.main-content {
+    position: relative;
+    z-index: 10;
+    background: white;
+    min-height: 100vh;
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+    padding: 2rem;
+}
+
+/* STATE SAAT MENU TERBUKA */
+.main-content.pushed {
+    /* Geser ke kanan (translateX) dan mengecil (scale) */
+    transform: translateX(260px) scale(0.85) rotateY(-5deg); /* Sedikit rotasi Y jika ingin efek 3D */
+    border-radius: 40px;
+    cursor: pointer;
+    user-select: none;
+    perspective: 1000px;
+}
+
+/* Block interaksi konten saat menu terbuka */
+.main-content.pushed * {
+    pointer-events: none;
+}
+
+/* Kecualikan tombol burger agar tetap bisa diklik untuk menutup */
+.main-content.pushed header button {
+    pointer-events: auto;
+}
+
+.pushed-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 20;
+}
